@@ -1,3 +1,25 @@
 <section>
-	<div class="wrapper"></div>
+	<div class="wrapper">
+		<div class="hero-grid">
+			<div class="flow padding-t-lg">
+				<h1 class="letter-sp-closer">Bring everyone together to build better products.</h1>
+				<p class="w-max-content">
+					Manage makes it simple for software teams to plan day-to-day tasks while keeping the
+					larger team goals in view.
+				</p>
+				<button class="button text-xs">Get started</button>
+			</div>
+			<div>
+				<img src="/images/illustration-intro.svg" alt="" />
+			</div>
+		</div>
+	</div>
 </section>
+
+<style>
+	.hero-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+		gap: var(--space-l);
+	}
+</style>

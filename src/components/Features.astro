@@ -1,0 +1,68 @@
+<section class="padding-block-3xl">
+	<div class="wrapper">
+		<div class="features-grid">
+			<div class="flow">
+				<h2>What's different about Manage?</h2>
+				<p>
+					Manage provides all the functionality your team needs, without the complexity. Our
+					software is tailor-made for modern digital product teams.
+				</p>
+			</div>
+
+			<ul class="list-unstyled flow">
+				<li class="flow-s">
+					<h3>Track company-wide progress</h3>
+					<p>
+						See how your day to day tasks fit into the wider vison. Go from tracking progress at the
+						milestone level all the way down to the smallest of details. Never lose sight of the
+						bigger picture again.
+					</p>
+				</li>
+				<li class="flow-s">
+					<h3>Advanced built-in reports</h3>
+					<p>
+						Set internal delivery estimates and track progress toward company goals. Our
+						customisable dashboard helps you build up the reports you need to keep key stakeholders
+						informed
+					</p>
+				</li>
+				<li class="flow-s">
+					<h3>Everything you need in one place</h3>
+					<p>
+						Stop jumping from one service to another to communicate, store files, track tasks and
+						share documents. Manage offers an all-in-one team productivity solution.
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<style>
+	ul {
+		margin: 0;
+		counter-reset: feat;
+	}
+	ul li {
+		position: relative;
+	}
+	ul li:before {
+		counter-increment: feat;
+		content: '0' counter(feat);
+		background: hsl(var(--crl-bright-red));
+		color: hsl(var(--crl-very-light-gray));
+		padding: 0.5rem 1.5rem;
+		position: absolute;
+		left: -5.5rem;
+		border-radius: 2rem;
+		font-variant-numeric: normal;
+	}
+	.features-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 5rem;
+	}
+	/* ul li:not(:first-child) {
+		margin-top: 2rem;
+	} */
+</style>

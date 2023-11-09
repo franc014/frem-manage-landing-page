@@ -1,0 +1,39 @@
+---
+import Testimonial from './Testimonial.astro';
+---
+
+<section>
+	<div class="wrapper">
+		<h2 class="text-center">What they've said</h2>
+	</div>
+	<div class="testimonial-slider padding-block-3xl">
+		<ul class="list-unstyled">
+			<li>
+				<Testimonial />
+			</li>
+			<li>
+				<Testimonial />
+			</li>
+			<li>
+				<Testimonial />
+			</li>
+		</ul>
+	</div>
+	<div class="wrapper flex flex-col items-center">
+		<button class="button">Get started</button>
+	</div>
+</section>
+
+<style>
+	.testimonial-slider {
+		overflow-x: scroll;
+	}
+	.testimonial-slider ul {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		column-gap: 1.8rem;
+		row-gap: 4rem;
+		margin: 0;
+		padding: 0;
+	}
+</style>
