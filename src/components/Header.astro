@@ -1,8 +1,39 @@
 <header>
 	<div class="wrapper">
-		<div class="flex space-between items-center padding-block-xl">
+		<div class="header-content flex space-between items-center padding-block-xl">
 			<img src="/images/logo.svg" alt="Manage Logo" />
-			<nav>
+			<button class="flex items-center text-primary" data-type="mobile-btn">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					class="w-6 h-6"
+					data-screen="mobile"
+					data-icon="open-nav"
+					data-state="open"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+				</svg>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					class="w-6 h-6"
+					data-screen="mobile"
+					data-icon="close-nav"
+					data-state="hidden"
+				>
+					<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+				</svg>
+			</button>
+			<nav data-type="header-nav" data-state="hidden">
 				<ul class="list-unstyled flex gap-4 text-xs">
 					<li><a class="link text-primary" href="/pricing">Pricing</a></li>
 					<li><a class="link text-primary" href="/product">Product</a></li>
@@ -11,7 +42,47 @@
 					<li><a class="link text-primary" href="/community">Community</a></li>
 				</ul>
 			</nav>
-			<button class="button text-xs">Get started</button>
+			<button class="button text-xs" data-type="header-cta">Get started</button>
 		</div>
 	</div>
 </header>
+
+<style>
+	header {
+		background-color: lightgreen;
+	}
+
+	nav {
+		background-color: lightseagreen;
+	}
+
+	.header-content {
+		background-color: lightsalmon;
+	}
+	@media screen and (max-width: 850px) {
+		.header-content {
+			flex-wrap: wrap;
+		}
+	}
+</style>
+
+<script>
+	const mobileMenuBtn = document.querySelector('[data-type="mobile-btn"]');
+	const nav = document.querySelector('[data-type="header-nav"]');
+	const openIcon = document.querySelector('[data-icon="open-nav"]');
+	const closeIcon = document.querySelector('[data-icon="close-nav"]');
+
+	function toggleMenu() {
+		if (nav.dataset.state === 'open') {
+			nav.dataset.state = 'hidden';
+			closeIcon.dataset.state = 'hidden';
+			openIcon.dataset.state = 'open';
+		} else {
+			nav.dataset.state = 'open';
+			closeIcon.dataset.state = 'open';
+			openIcon.dataset.state = 'hidden';
+		}
+	}
+
+	mobileMenuBtn.addEventListener('click', toggleMenu);
+</script>
