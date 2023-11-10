@@ -8,6 +8,22 @@
 </section>
 
 <style>
+	section {
+		position: relative;
+		isolation: isolate;
+	}
+	section::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background:
+			url('/images/bg-tablet-pattern.svg') 0 0 no-repeat,
+			url('/images/bg-tablet-pattern.svg') 150% 120% no-repeat;
+		background-color: hsl(var(--crl-bright-red));
+		background-size: 50%;
+		opacity: 0.1;
+		z-index: -1;
+	}
 	button {
 		margin-left: auto;
 	}
