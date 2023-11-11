@@ -1,7 +1,7 @@
 <section class="bg-bright-red padding-block-2xl">
 	<div class="wrapper">
-		<div class="flex items-center">
-			<p class="w-max-content">Simplify how your team works today.</p>
+		<div class="flex items-center cta-content">
+			<p>Simplify how your team works today.</p>
 			<button class="button" data-type="secondary">Get Started</button>
 		</div>
 	</div>
@@ -31,5 +31,24 @@
 		color: hsl(var(--crl-very-light-gray));
 		font-size: var(--fs-800);
 		width: clamp(45%, 10vw + 1rem, 70%);
+	}
+
+	@media screen and (max-width: 850px) {
+		.cta-content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 2rem;
+		}
+		button {
+			margin-left: 0;
+		}
+
+		p {
+			font-size: var(--fs-800);
+			width: clamp(80%, 10vw + 1rem, 100%);
+			text-align: center;
+		}
 	}
 </style>

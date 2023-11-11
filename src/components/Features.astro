@@ -39,14 +39,23 @@
 </section>
 
 <style>
+	p {
+		font-size: var(--fs-300);
+	}
 	ul {
 		margin: 0;
+		padding: 0;
 		counter-reset: feat;
 	}
-	ul li {
+
+	ul li h3 {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
 		position: relative;
 	}
-	ul li:before {
+
+	ul li h3:before {
 		counter-increment: feat;
 		content: '0' counter(feat);
 		background: hsl(var(--crl-bright-red));
@@ -62,7 +71,44 @@
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 5rem;
 	}
-	/* ul li:not(:first-child) {
-		margin-top: 2rem;
-	} */
+
+	@media screen and (max-width: 850px) {
+		h2 {
+			text-align: center;
+		}
+
+		h3 {
+			background-color: hsl(var(--crl-very-pale-red));
+		}
+
+		h2 + p {
+			text-align: center;
+		}
+		ul li {
+			position: relative;
+		}
+		ul li h3 {
+			display: flex;
+			align-items: center;
+			border-bottom-left-radius: 2rem;
+			border-top-left-radius: 2rem;
+			padding: 0.5rem 0 0.5rem 3.8rem;
+		}
+
+		ul li h3:before {
+			counter-increment: feat;
+			content: '0' counter(feat);
+			background: hsl(var(--crl-bright-red));
+			color: hsl(var(--crl-very-light-gray));
+
+			margin-left: 5.5rem;
+			border-radius: 2rem;
+			font-variant-numeric: normal;
+			width: 40px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0.5rem 1.8rem;
+		}
+	}
 </style>
