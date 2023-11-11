@@ -48,16 +48,16 @@
 </header>
 
 <style>
-	header {
+	/* header {
 		background-color: lightgreen;
 	}
 
 	nav {
 		background-color: lightseagreen;
-	}
+	} */
 
 	.header-content {
-		background-color: lightsalmon;
+		/* background-color: lightsalmon; */
 	}
 	@media screen and (max-width: 850px) {
 		.header-content {
@@ -68,6 +68,7 @@
 
 <script>
 	const mobileMenuBtn = document.querySelector('[data-type="mobile-btn"]');
+	const curtain = document.querySelector('.mobile-curtain');
 	const nav = document.querySelector('[data-type="header-nav"]');
 	const openIcon = document.querySelector('[data-icon="open-nav"]');
 	const closeIcon = document.querySelector('[data-icon="close-nav"]');
@@ -75,11 +76,13 @@
 	function toggleMenu() {
 		if (nav.dataset.state === 'open') {
 			nav.dataset.state = 'hidden';
+			curtain.dataset.state = 'hidden';
 			closeIcon.dataset.state = 'hidden';
 			openIcon.dataset.state = 'open';
 		} else {
 			nav.dataset.state = 'open';
 			closeIcon.dataset.state = 'open';
+			curtain.dataset.state = 'open';
 			openIcon.dataset.state = 'hidden';
 		}
 	}

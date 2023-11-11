@@ -25,12 +25,12 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<div class="mobile-curtain" data-screen="mobile" data-state="hidden"></div>
+		<div class="mobile-curtain" data-state="hidden"></div>
 		<Header />
-		<!-- <main>
+		<main>
 			<slot />
 		</main>
-		<Footer /> -->
+		<Footer />
 	</body>
 </html>
 <style is:global>
@@ -375,14 +375,14 @@ const { title } = Astro.props;
 
 	.mobile-curtain {
 		display: none;
+		min-height: 100vh;
 	}
 
 	@media screen and (max-width: 850px) {
 		.mobile-curtain[data-state='open'] {
 			display: block;
-			height: 100vh;
-			background-image: linear-gradient(0deg, #9095a7 0%, #fafafa 100%);
-			opacity: 0.5;
+			background-image: linear-gradient(180deg, #fafafa 0%, #9095a7 50%, #fafafa 100%);
+			opacity: 0.3;
 			position: absolute;
 			z-index: -1;
 			inset: 0;
@@ -402,9 +402,10 @@ const { title } = Astro.props;
 
 		nav[data-state='open'] {
 			display: block;
-			background-color: lightgray;
+			background-color: hsl(var(--crl-very-light-gray));
 			width: 100%;
-			padding-top: 2.8rem;
+
+			margin-top: 3rem;
 		}
 
 		nav[data-state='open'] ul {
@@ -414,19 +415,16 @@ const { title } = Astro.props;
 			gap: 0;
 			margin: 0;
 			padding: 0;
-			background-color: lightgoldenrodyellow;
 			opacity: 1;
 		}
 
 		nav[data-state='open'] ul li {
-			background-color: lightpink;
 			width: 100%;
 			text-align: center;
 			padding-block: 1rem;
 		}
 
 		[data-state='hidden'] {
-			background-color: lightseagreen;
 			display: none;
 		}
 	}
