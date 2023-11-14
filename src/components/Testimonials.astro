@@ -9,12 +9,35 @@ import Testimonial from './Testimonial.astro';
 	<div class="testimonial-slider padding-block-xl">
 		<ul class="list-unstyled">
 			<li>
+				1
 				<Testimonial />
 			</li>
 			<li>
+				2
 				<Testimonial />
 			</li>
 			<li>
+				3
+				<Testimonial />
+			</li>
+			<li>
+				4
+				<Testimonial />
+			</li>
+			<li>
+				5
+				<Testimonial />
+			</li>
+			<li>
+				6
+				<Testimonial />
+			</li>
+			<li>
+				7
+				<Testimonial />
+			</li>
+			<li>
+				8
 				<Testimonial />
 			</li>
 		</ul>
@@ -29,11 +52,64 @@ import Testimonial from './Testimonial.astro';
 		overflow-x: scroll;
 	}
 	.testimonial-slider ul {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-		column-gap: 1.8rem;
-		row-gap: 4rem;
+		display: flex;
+		gap: 2rem;
 		margin: 0;
 		padding: 0;
+		transition: transform 0.5s ease-in-out;
+	}
+
+	.testimonial-slider ul li {
+		width: 300px;
+		flex: 0 0 auto;
 	}
 </style>
+
+<script>
+	const testimonials = document.querySelector('.testimonial-slider ul');
+	let initialX = undefined;
+	let startTranslate = undefined;
+	let isDragging = false;
+	let scrollLeft = 0;
+
+	function getTranslateX() {
+		const transformValue = window.getComputedStyle(testimonials).getPropertyValue('transform');
+		const matrix = new WebKitCSSMatrix(transformValue);
+		return matrix.m41;
+	}
+
+	function handleMouseDown(e) {
+		initialX = e.pageX - testimonials.offsetLeft;
+		startTranslate = getTranslateX();
+		isDragging = true;
+		scrollLeft = testimonials.scrollLeft;
+	}
+
+	function handleMouseMove(e) {
+		if (!isDragging) return;
+		e.preventDefault();
+		isDragging = true;
+		const distanceDraggedX = e.pageX - testimonials.offsetLeft;
+		const distanceMoved = distanceDraggedX - initialX;
+		const walk = distanceMoved;
+		testimonials.style.transform = `translateX(${scrollLeft - walk}px)`;
+		//testimonials.scroll(scrollLeft - walk, 0);
+	}
+
+	function handleMouseUp(e) {
+		isDragging = false;
+		initialX = undefined;
+		startTranslate = undefined;
+	}
+
+	function handleMouseLeave(e) {
+		isDragging = false;
+		initialX = undefined;
+		startTranslate = undefined;
+	}
+
+	testimonials.addEventListener('mousedown', handleMouseDown);
+	testimonials.addEventListener('mousemove', handleMouseMove);
+	testimonials.addEventListener('mouseup', handleMouseUp);
+	testimonials.addEventListener('mouseleave', handleMouseLeave);
+</script>
