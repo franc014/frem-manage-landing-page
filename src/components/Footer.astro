@@ -7,7 +7,7 @@ import SocialLinks from './SocialLinks.astro';
 		<div class="footer-grid">
 			<img class="logo" src="/images/logo-light.svg" alt="Manage's logo" />
 
-			<ul class="list-unstyled sn-links flex gap justify-between">
+			<ul class="list-unstyled sn-links flex gap">
 				<SocialLinks />
 			</ul>
 
@@ -129,6 +129,8 @@ import SocialLinks from './SocialLinks.astro';
 
 		.sn-links {
 			justify-self: center;
+			justify-content: space-evenly;
+			width: 80%;
 		}
 	}
 </style>
