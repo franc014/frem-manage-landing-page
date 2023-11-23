@@ -9,36 +9,16 @@ import Testimonial from './Testimonial.astro';
 	<div class="testimonial-slider padding-block-xl">
 		<ul class="list-unstyled">
 			<li>
-				1
-				<Testimonial />
+				<Testimonial name="Anisha Li" img="avatar-anisha.png" />
 			</li>
 			<li>
-				2
-				<Testimonial />
+				<Testimonial name="Ali Bravo" img="avatar-ali.png" />
 			</li>
 			<li>
-				3
-				<Testimonial />
+				<Testimonial name="Richard Watts" img="avatar-richard.png" />
 			</li>
 			<li>
-				4
-				<Testimonial />
-			</li>
-			<li>
-				5
-				<Testimonial />
-			</li>
-			<li>
-				6
-				<Testimonial />
-			</li>
-			<li>
-				7
-				<Testimonial />
-			</li>
-			<li>
-				8
-				<Testimonial />
+				<Testimonial name="Shanai Freisburg" img="avatar-shanai.png" />
 			</li>
 		</ul>
 	</div>
@@ -49,67 +29,62 @@ import Testimonial from './Testimonial.astro';
 
 <style>
 	.testimonial-slider {
-		overflow-x: scroll;
+		overflow-x: hidden;
+		mask: linear-gradient(to right, transparent, blue 10%, blue 90%, transparent);
+		background-color: hsl(var(--crl-very-light-gray) / 0.2);
+	}
+
+	.testimonial-slider.dragging {
+		cursor: grab;
 	}
 	.testimonial-slider ul {
 		display: flex;
 		gap: 2rem;
-		margin: 0;
+		margin: 1rem 0 2rem 0;
 		padding: 0;
-		transition: transform 0.5s ease-in-out;
 	}
 
 	.testimonial-slider ul li {
-		width: 300px;
+		width: 600px;
 		flex: 0 0 auto;
 	}
 </style>
 
 <script>
-	const testimonials = document.querySelector('.testimonial-slider ul');
-	let initialX = undefined;
-	let startTranslate = undefined;
-	let isDragging = false;
-	let scrollLeft = 0;
-
-	function getTranslateX() {
-		const transformValue = window.getComputedStyle(testimonials).getPropertyValue('transform');
-		const matrix = new WebKitCSSMatrix(transformValue);
-		return matrix.m41;
-	}
+	const slider = document.querySelector('.testimonial-slider');
+	let initX;
+	let dragging = false;
+	let scrollLeft;
 
 	function handleMouseDown(e) {
-		initialX = e.pageX - testimonials.offsetLeft;
-		startTranslate = getTranslateX();
-		isDragging = true;
-		scrollLeft = testimonials.scrollLeft;
+		dragging = true;
+		slider.classList.add('dragging');
+		initX = e.pageX - slider.offsetLeft; //offset left: if we put a margin in the slider list
+		scrollLeft = slider.scrollLeft;
+
+		console.log({ px: e.pageX, ol: slider.offsetLeft, initX });
 	}
 
 	function handleMouseMove(e) {
-		if (!isDragging) return;
-		e.preventDefault();
-		isDragging = true;
-		const distanceDraggedX = e.pageX - testimonials.offsetLeft;
-		const distanceMoved = distanceDraggedX - initialX;
-		const walk = distanceMoved;
-		testimonials.style.transform = `translateX(${scrollLeft - walk}px)`;
-		//testimonials.scroll(scrollLeft - walk, 0);
+		if (!dragging) return;
+		e.preventDefault(); // prevent any text selection or other similar actions
+		const endX = e.pageX - slider.offsetLeft;
+		const walk = endX - initX;
+		slider.scrollLeft = scrollLeft - walk;
 	}
 
 	function handleMouseUp(e) {
-		isDragging = false;
-		initialX = undefined;
-		startTranslate = undefined;
+		dragging = false;
+		slider.classList.remove('dragging');
 	}
 
 	function handleMouseLeave(e) {
-		isDragging = false;
-		initialX = undefined;
-		startTranslate = undefined;
+		dragging = false;
+		slider.classList.remove('dragging');
 	}
 
-	testimonials.addEventListener('mousedown', handleMouseDown);
-	testimonials.addEventListener('mousemove', handleMouseMove);
-	testimonials.addEventListener('mouseup', handleMouseUp);
-	testimonials.addEventListener('mouseleave', handleMouseLeave);
+	slider.addEventListener('mousedown', handleMouseDown);
+	slider.addEventListener('mousemove', handleMouseMove);
+	slider.addEventListener('mouseup', handleMouseUp);
+	slider.addEventListener('mouseleave', handleMouseLeave);
 </script>
