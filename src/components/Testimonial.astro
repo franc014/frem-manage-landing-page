@@ -1,10 +1,14 @@
+---
+const { name, img } = Astro.props;
+---
+
 <div class="flex flex-col items-center flow-s bg-light-gray">
-	<img src="/images/avatar-ali.png" alt="Ali's avatar" />
-	<h3>Ali Bravo</h3>
+	<img src={`images/${img}`} alt="Ali's avatar" />
+	<h3>{name}</h3>
 	<p class="text-center">
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem nobis quas sit aliquid eius,
+		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem nobis quas sit aliquid eius,
 		sapiente enim, dolorum tenetur hic dicta quasi nam ullam consectetur voluptatibus distinctio
-		error. Ab, ducimus illum.
+		error. Ab, ducimus illum."
 	</p>
 </div>
 

@@ -7,7 +7,7 @@ import SocialLinks from './SocialLinks.astro';
 		<div class="footer-grid">
 			<img class="logo" src="/images/logo-light.svg" alt="Manage's logo" />
 
-			<ul class="list-unstyled sn-links flex gap">
+			<ul class="list-unstyled sn-links flex gap justify-between">
 				<SocialLinks />
 			</ul>
 
@@ -27,7 +27,7 @@ import SocialLinks from './SocialLinks.astro';
 
 			<form class="flex gap items-center">
 				<input type="email" placeholder="Updates in your inbox" />
-				<button class="button" data-type="small">Go</button>
+				<button class="button" data-type="small" data-for-background="dark">Go</button>
 			</form>
 
 			<p class="text-xs">Copyright <span class="copy-year"></span>. All rights reserved</p>
@@ -36,6 +36,9 @@ import SocialLinks from './SocialLinks.astro';
 </footer>
 
 <style>
+	a:hover {
+		color: hsl(var(--crl-bright-red) / 0.5);
+	}
 	.footer-grid {
 		display: grid;
 		grid-template-areas:
