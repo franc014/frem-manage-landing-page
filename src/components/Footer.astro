@@ -1,4 +1,5 @@
 ---
+import Form from './Form.astro';
 import SocialLinks from './SocialLinks.astro';
 ---
 
@@ -24,11 +25,9 @@ import SocialLinks from './SocialLinks.astro';
 				<li><a href="#">Products</a></li>
 				<li><a href="#">Privacy Policy</a></li>
 			</ul>
-
-			<form class="flex gap items-center">
-				<input type="email" placeholder="Updates in your inbox" />
-				<button class="button" data-type="small" data-for-background="dark">Go</button>
-			</form>
+			<div class="form">
+				<Form />
+			</div>
 
 			<p class="text-xs">Copyright <span class="copy-year"></span>. All rights reserved</p>
 		</div>
@@ -73,7 +72,7 @@ import SocialLinks from './SocialLinks.astro';
 		line-height: 2;
 	}
 
-	form {
+	.form {
 		grid-area: form;
 		justify-self: end;
 	}
@@ -82,18 +81,6 @@ import SocialLinks from './SocialLinks.astro';
 		grid-area: cr;
 		text-align: right;
 		justify-self: end;
-	}
-
-	input {
-		border: 0;
-		font-size: var(--fs-200);
-		border-radius: 3rem;
-		padding: 0.8rem 1.5rem;
-		color: hsl(var(--crl-grayish-blue));
-	}
-
-	input::placeholder {
-		color: hsl(var(--crl-grayish-blue) / 0.8);
 	}
 
 	@media screen and (max-width: 850px) {
@@ -106,7 +93,7 @@ import SocialLinks from './SocialLinks.astro';
 				'logo logo'
 				'cr cr';
 		}
-		form {
+		.form {
 			justify-self: center;
 		}
 		p {

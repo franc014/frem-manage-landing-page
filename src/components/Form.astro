@@ -1,0 +1,111 @@
+<div class="flex flex-col">
+	<form class="flex gap items-center" novalidate>
+		<input type="email" placeholder="Updates in your inbox" />
+		<button type="submit" class="button" data-type="small" data-for-background="dark">Go</button>
+	</form>
+	<div class="margin-top-xs">
+		<p class="alert text-xs"></p>
+	</div>
+</div>
+<style>
+	.alert {
+		max-width: 90%;
+		font-style: italic;
+		letter-spacing: 1px;
+	}
+
+	.alert-error {
+		color: hsl(var(--crl-bright-red) / 0.5);
+	}
+
+	.alert-success {
+		color: lightgreen;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.alert-success::after {
+		content: url('images/check-icon.svg');
+	}
+
+	input {
+		border: 0;
+		font-size: var(--fs-200);
+		border-radius: 3rem;
+		padding: 0.8rem 1.5rem;
+		color: hsl(var(--crl-grayish-blue));
+	}
+
+	input::placeholder {
+		color: hsl(var(--crl-grayish-blue) / 0.8);
+	}
+</style>
+
+<script>
+	const frm = document.querySelector('form');
+	const input = frm.elements[0];
+	const alert = document.querySelector('p.alert');
+	const SUCCESS_MESSAGE = 'Thanks for getting in touch!';
+
+	function checkEmpty() {
+		const emailElement = frm.elements[0];
+		if (emailElement.value === '') throw new Error('Email field is empty.');
+	}
+
+	function checkEmailValid() {
+		const emailElement = frm.elements[0];
+		const rxPattern =
+			/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
+		const rxValRegEx = emailElement.value.match(rxPattern);
+		if (!rxValRegEx)
+			throw new Error('Email is typed incorrectly, or does not exist. Enter a valid email');
+	}
+
+	function clearAlerts() {
+		alert.textContent = '';
+		alert.classList.remove('alert-error');
+		alert.classList.remove('alert-success');
+	}
+
+	function sendForm() {
+		//todo: simulate sending form
+		showAlert(SUCCESS_MESSAGE, 'success');
+	}
+
+	function handleSubmit(e) {
+		e.preventDefault();
+		try {
+			checkEmpty();
+			checkEmailValid();
+			clearAlerts();
+			sendForm();
+		} catch (e) {
+			showAlert(e.message, 'error');
+		}
+	}
+
+	function showAlert(message, type) {
+		alert.textContent = message;
+		if (type === 'error') {
+			alert.classList.add('alert-error');
+		}
+
+		if (type === 'success') {
+			alert.classList.add('alert-success');
+		}
+	}
+
+	function handleOnBlur() {
+		try {
+			checkEmpty();
+			checkEmailValid();
+			clearAlerts();
+		} catch (e) {
+			showAlert(e.message, 'error');
+		}
+	}
+
+	frm.addEventListener('submit', handleSubmit);
+	input.addEventListener('blur', handleOnBlur);
+</script>
