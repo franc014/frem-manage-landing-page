@@ -45,8 +45,13 @@
 <script>
 	const frm = document.querySelector('form');
 	const input = frm.elements[0];
+	const btn = frm.elements[1];
 	const alert = document.querySelector('p.alert');
 	const SUCCESS_MESSAGE = 'Thanks for getting in touch!';
+
+	function wait(ms) {
+		return new Promise((resolve) => setTimeout(resolve, ms));
+	}
 
 	function checkEmpty() {
 		const emailElement = frm.elements[0];
@@ -68,9 +73,17 @@
 		alert.classList.remove('alert-success');
 	}
 
-	function sendForm() {
-		//todo: simulate sending form
+	async function sendForm() {
+		//simulate sending form
+		btn.textContent = 'Sending...';
+		btn.setAttribute('disabled', '');
+		await wait(2000);
+		btn.textContent = 'Go';
+		btn.removeAttribute('disabled');
+		input.value = '';
 		showAlert(SUCCESS_MESSAGE, 'success');
+		await wait(1000);
+		clearAlerts();
 	}
 
 	function handleSubmit(e) {
