@@ -48,21 +48,21 @@
 	const btn = frm.elements[1];
 	const alert = document.querySelector('p.alert');
 	const SUCCESS_MESSAGE = 'Thanks for getting in touch!';
+	const LOADING_MESSAGE = 'Sending...';
+	const BUTTON_LABEL = 'Go';
 
 	function wait(ms) {
 		return new Promise((resolve) => setTimeout(resolve, ms));
 	}
 
 	function checkEmpty() {
-		const emailElement = frm.elements[0];
-		if (emailElement.value === '') throw new Error('Email field is empty.');
+		if (input.value === '') throw new Error('Email field is empty.');
 	}
 
 	function checkEmailValid() {
-		const emailElement = frm.elements[0];
 		const rxPattern =
 			/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
-		const rxValRegEx = emailElement.value.match(rxPattern);
+		const rxValRegEx = input.value.match(rxPattern);
 		if (!rxValRegEx)
 			throw new Error('Email is typed incorrectly, or does not exist. Enter a valid email');
 	}
@@ -75,14 +75,14 @@
 
 	async function sendForm() {
 		//simulate sending form
-		btn.textContent = 'Sending...';
+		btn.textContent = LOADING_MESSAGE;
 		btn.setAttribute('disabled', '');
 		await wait(2000);
-		btn.textContent = 'Go';
+		btn.textContent = BUTTON_LABEL;
 		btn.removeAttribute('disabled');
 		input.value = '';
 		showAlert(SUCCESS_MESSAGE, 'success');
-		await wait(1000);
+		await wait(2000);
 		clearAlerts();
 	}
 
